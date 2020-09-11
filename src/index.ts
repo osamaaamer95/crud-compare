@@ -25,20 +25,20 @@ function isEqualObject (a, b) {
 
 /**
  * Compare two arrays of objects, to get the created, updated, and deleted values
- * @param {Object[]} toCompareVals The first array item must be the original array of objects.
+ * @param {T[]} toCompareVals The first array item must be the original array of objects.
  * [originalArray, stateUpdatedArray]
- * @param {String!} key The related key between the objects
+ * @param {keyof T!} key The related key between the objects
  * @returns returns three objects with the corresponding created, updated, and deleted values
  * respectively. Returns null for one of the corresponding values if it doesn't exist.
  */
-function compareObjectVals (toCompareVals: [Object[], Object[]], key: string) : 
-  { createdVals: Object[] | null, updatedVals: Object[] | null, deletedVals: Object[] | null } {
+function compareObjectVals<T> (toCompareVals: [T[], T[]], key: keyof T) : 
+  { createdVals: T[] | null, updatedVals: T[] | null, deletedVals: T[] | null } {
   
   handleInputValidation(toCompareVals, key);
 
-  var createdVals: any[] | null = [];
-  var updatedVals: any[] | null = [];
-  var deletedVals: any[] | null = [];
+  var createdVals: T[] | null = [];
+  var updatedVals: T[] | null = [];
+  var deletedVals: T[] | null = [];
   var originalItemKeys: any[] = [];
   var activeItemKeys: any[] = [];
   var originalItem = toCompareVals[0];
